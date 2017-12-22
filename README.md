@@ -17,6 +17,11 @@ Building and running the image with make will end up on you having more time to 
 The makefile in this project features the following functions:
 - *make build*
 - *make run*
+- *make run-no-detach*
+- *make logs*
+- *make inspect*
+
+You can check what exactly each of these functions do in the *makefile*.
 
 Build and run parameters can be modified on the makefile, so set up your installation as you like!
 
