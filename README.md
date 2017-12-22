@@ -1,3 +1,5 @@
+center[![Grafana](https://i.imgur.com/7sHvVLx.png)]
+
 # Grafana Monitoring Dashboards - CentOS 7 Container
 Do you want to have your own Grafana Docker Container over CentOS7? With this project, you'll be able to build and run your image in short time and update it with newer versions anytime!
 
