@@ -11,6 +11,10 @@ GRAFANA_VERSION_FULL=4.6.3
 ## Set up Grafana container name
 GRAFANA_CONTAINER_NAME=grafana
 
+## Set up Grafana persistence folder naming
+GRAFANA_PERSISTENCE_NAME=grafana-persistence
+GRAFANA_PERSISTENCE_LOCATION=/var/lib/docker/volumes/${GRAFANA_PERSISTENCE_NAME}/_data
+
 ## Set up Grafana host port
 HOST_PORT=3000
 
@@ -24,6 +28,11 @@ run: ## Run the Grafana container
 	@echo "Running Grafana with default options";
 	@docker stop ${GRAFANA_CONTAINER_NAME} || true && docker rm ${GRAFANA_CONTAINER_NAME} || true
 	@docker run -d --name ${GRAFANA_CONTAINER_NAME} -p ${HOST_PORT}:3000 ${LABEL}/grafana:${GRAFANA_VERSION_FULL} 
+	
+run-persistence:
+        @echo "Running Grafana with data persistence in ${GRAFANA_PERSISTENCE_LOCATION}"
+	@docker stop ${GRAFANA_CONTAINER_NAME} || true && docker rm ${GRAFANA_CONTAINER_NAME} || true
+	@docker run -d --name ${GRAFANA_CONTAINER_NAME} -v ${GRAFANA_PERSISTENCE_NAME}:/usr/share/grafana/data -p ${HOST_PORT}:3000 ${LABEL}/grafana:${GRAFANA_VERSION_FULL} 
 	
 run-no-detach: ## Run the Grafana container without -d parameter to check on logs
         @echo "Running Prometheus without detach to check on logs at startup ..."
